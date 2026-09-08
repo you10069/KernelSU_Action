@@ -185,6 +185,12 @@ jobs:
           key: kernel-${{ env.DEVICE }}-${{ env.KSU_VARIANT }}-${{ env.KERNEL_VERSION }}
           max-size: 2G
 
+      - name: Patch /bin/sh → bash (fix 4.19‑CAF modbuiltin dash shell bug)
+        run: |
+          sudo ln -sf /bin/bash /bin/sh
+          ls -l /bin/sh
+          bash --version
+
       - name: Build kernel
         run: bash scripts/build.sh all
 
