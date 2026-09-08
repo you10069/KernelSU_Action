@@ -194,6 +194,12 @@ jobs:
       - name: Build kernel
         run: bash scripts/build.sh all
 
+      # 【可选】内核编译完成，恢复系统默认sh=dash；package阶段恢复系统默认行为
+      - name: Restore /bin/sh back to dash
+        run: |
+          sudo ln -sf /bin/dash /bin/sh
+          ls -l /bin/sh
+
       - name: Package artifacts
         run: bash scripts/package.sh all
 
