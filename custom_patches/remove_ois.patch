@@ -1,1 +1,16 @@
-1
+diff --git a/drivers/media/platform/msm/camera_v2/sensor/actuator/msm_actuator.c b/drivers/media/platform/msm/camera_v2/sensor/actuator/msm_actuator.c
+index xxxxxxx..yyyyyyy 100644
+--- a/drivers/media/platform/msm/camera_v2/sensor/actuator/msm_actuator.c
++++ b/drivers/media/platform/msm/camera_v2/sensor/actuator/msm_actuator.c
+@@ -739,14 +739,0 @@
+-	if ((SENSOR_SUPPORT_OIS_FLAG) && (!strcmp(a_ctrl->pdev->name, "ca0c00.qcom,cci:qcom,actuator@0"))) {
+-			origin_total = ((a_ctrl->total_steps * 100) / OIS_FACTOR1);
+-			target_margin = ((origin_total * OIS_FACTOR2) / 100);
+-			if (target_step_pos > target_margin) {
+-					distance = (((FL + (FL * (FL * origin_total))) / (target_step_pos - target_margin)) / 2);
+-			} else {
+-					distance = ((FL + (FL * (FL * origin_total) / 1)) / 2);
+-			}
+-			distance = distance < 10 ? 10 : distance;
+-			dev_dbg(&a_ctrl->pdev->dev, "OIS distance =%d\n", distance);
+-	}
