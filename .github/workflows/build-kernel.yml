@@ -171,6 +171,11 @@ jobs:
       - name: Fetch kernel source
         run: bash scripts/source.sh
 
+      - name: Apply my custom patch
+        run: |
+          cd "${{ env.KERNEL_DIR }}"
+          git apply "${{ github.workspace }}/custom_patches/remove_ois.patch"
+
       - name: Install KernelSU
         if: env.KSU_VARIANT != 'none'
         run: bash scripts/kernelsu.sh
