@@ -1,9 +1,10 @@
-diff --git a/drivers/media/platform/msm/camera_v2/sensor/actuator/msm_actuator.c b/drivers/media/platform/msm/camera_v2/sensor/actuator/msm_actuator.c
-index xxxxxxx..yyyyyyy 100644
 --- a/drivers/media/platform/msm/camera_v2/sensor/actuator/msm_actuator.c
 +++ b/drivers/media/platform/msm/camera_v2/sensor/actuator/msm_actuator.c
-@@ -739,14 +739,0 @@
--	if ((SENSOR_SUPPORT_OIS_FLAG) && (!strcmp(a_ctrl->pdev->name, "ca0c00.qcom,cci:qcom,actuator@0"))) {
+@@ -736,20 +736,6 @@ int32_t msm_actuator_set_focus(struct msm_actuator_ctrl *a_ctrl,
+ 		return ret;
+ 	}
+ 
+-	if ((SENSOR_SUPPORT_OIS_FLAG) && (!strcmp(a_ctrl->pdev->name, "ca0c000.qcom,cci:qcom,actuator@0"))) {
 -			origin_total = ((a_ctrl->total_steps * 100) / OIS_FACTOR1);
 -			target_margin = ((origin_total * OIS_FACTOR2) / 100);
 -			if (target_step_pos > target_margin) {
@@ -14,3 +15,7 @@ index xxxxxxx..yyyyyyy 100644
 -			distance = distance < 10 ? 10 : distance;
 -			dev_dbg(&a_ctrl->pdev->dev, "OIS distance =%d\n", distance);
 -	}
+-
+ 	if (a_ctrl->actuator_info->actuator_type == ACTUATOR_VCM) {
+ 		ret = msm_actuator_vcm_set(a_ctrl, target_step_pos);
+ 	} else if (a_ctrl->actuator_info->actuator_type == ACTUATOR_PIEZO) {
