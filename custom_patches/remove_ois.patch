@@ -1,19 +1,19 @@
 --- a/drivers/media/platform/msm/camera_v2/sensor/actuator/msm_actuator.c
 +++ b/drivers/media/platform/msm/camera_v2/sensor/actuator/msm_actuator.c
-@@ -736,20 +736,6 @@ int32_t msm_actuator_set_focus(struct msm_actuator_ctrl *a_ctrl,
+@@ -736,18 +736,6 @@ int32_t msm_actuator_set_focus(struct msm_actuator_ctrl *a_ctrl,
  		return ret;
  	}
  
--	if ((SENSOR_SUPPORT_OIS_FLAG) && (!strcmp(a_ctrl->pdev->name, "ca0c000.qcom,cci:qcom,actuator@0"))) {
--			origin_total = ((a_ctrl->total_steps * 100) / OIS_FACTOR1);
--			target_margin = ((origin_total * OIS_FACTOR2) / 100);
--			if (target_step_pos > target_margin) {
--					distance = (((FL + (FL * (FL * origin_total))) / (target_step_pos - target_margin)) / 2);
--			} else {
--					distance = ((FL + (FL * (FL * origin_total) / 1)) / 2);
--			}
--			distance = distance < 10 ? 10 : distance;
--			dev_dbg(&a_ctrl->pdev->dev, "OIS distance =%d\n", distance);
+-	if ((SENSOR_SUPPORT_OIS_FLAG) && (!strcmp(a_ctrl->pdev->name, "ca0c00.qcom,cci:qcom,actuator@0"))) {
+-		origin_total = ((a_ctrl->total_steps * 100) / OIS_FACTOR1);
+-		target_margin = ((origin_total * OIS_FACTOR2) / 100);
+-		if (target_step_pos > target_margin) {
+-			distance = (((FL + (FL * (FL * origin_total))) / (target_step_pos - target_margin)) / 2);
+-		} else {
+-			distance = ((FL + (FL * (FL * origin_total) / 1)) / 2);
+-		}
+-		distance = distance < 10 ? 10 : distance;
+-		dev_dbg(&a_ctrl->pdev->dev, "OIS distance =%d\n", distance);
 -	}
 -
  	if (a_ctrl->actuator_info->actuator_type == ACTUATOR_VCM) {
